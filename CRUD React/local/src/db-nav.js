@@ -5,20 +5,26 @@ import DBUpdate from './db-update'
 import DBDelete from './db-delete'
 import DBPaginate from './db-paginate'
 import DBSearch from './db-search'
+import './nav.css'
 
 export default function DBNav() {
     const path = window.location.pathname
     switch (path) {
         case '/db':
             return (
-                <div style={{margin: '30px 50px'}}>
-                    <a href="/db/create">เพิ่มข้อมูล</a><br />
-                    <a href="/db/read">แสดงข้อมูล</a><br />
-                    <a href="/db/update">เเก้ไขข้อมูล</a><br />
-                    <a href="/db/delete">ลบข้อมูล</a><br />
-                    <a href="/db/paginate">แบ่งเพจ</a><br />
-                    <a href="/db/search">Workshop: ค้นหาข้อมูล</a><br />
-                </div>
+                <section className="navbar">
+                    <div className="logo">
+                        <h1>My Logo</h1>
+                    </div>
+                    <ul>
+                    <li><a href="/db/create">เพิ่มข้อมูล</a></li>
+                    <li><a href="/db/read">แสดงข้อมูล</a></li>
+                    <li><a href="/db/update">เเก้ไขข้อมูล</a></li>
+                    <li><a href="/db/delete">ลบข้อมูล</a></li>
+                    <li><a href="/db/paginate">แบ่งเพจ</a></li>
+                    <li><a href="/db/search">Workshop: ค้นหาข้อมูล</a></li>
+                </ul>
+                </section>
             )
         case '/db/create': return <DBCreate />
         case '/db/read': return <DBRead />
