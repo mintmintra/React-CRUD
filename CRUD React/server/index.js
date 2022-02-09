@@ -59,6 +59,19 @@ app.post('/api/db/update', (request, response) => {
     })
 })
 
+app.post('/api/db/delete', (request, response) => {
+    let _id = request.body._id
+    Product
+        .findByIdAndDelete(_id, { useFindAndModify: false })
+        .exec(err => {
+            if (err) {
+                response.json({ error: err })
+                return
+            }
+        })
+    Product.find().exec((err, docs) => { response.json(docs)})
+})
+
 app.listen(port, () => {
     console.log('Server listening on port ' + port)
 })
