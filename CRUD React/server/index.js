@@ -72,6 +72,17 @@ app.post('/api/db/delete', (request, response) => {
     Product.find().exec((err, docs) => { response.json(docs)})
 })
 
+app.get('/api/db/paginate', (request, response) => {
+    let options = {
+        page: request.query.page || 1, //เพจปัจจุบัน
+        limit: 2 //แสดงผลหน้าละ 2 รายการ เพราะข้อมูลที่ใช้ทดสอบมีไม่กี่รายการ
+    }
+    Product
+        .paginate({}, options, (err, result) => {
+            response.json(result) //result จะมีผลลัพธ์และข้อมูลเกี่ยวกับเพจ
+    })
+})
+
 app.listen(port, () => {
     console.log('Server listening on port ' + port)
 })

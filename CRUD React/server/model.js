@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const paginate = require('mongoose-paginate-v2')
 
 mongoose.connect('mongodb://localhost/db1', {
     useNewUrlParser: true, useUnifiedTopology: true
@@ -13,7 +14,7 @@ let productSchema = new mongoose.Schema({
 	date_added: Date
 })
 
-
+productSchema.plugin(paginate)
 let Product = mongoose.model('Product', productSchema)
 
 module.exports = Product
