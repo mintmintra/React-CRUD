@@ -13,9 +13,9 @@ export default function DBNav() {
         case '/db':
             return (
                 <section className="navbar">
-                    <div className="logo">
+                    {/* <div className="logo">
                         <h1>My Logo</h1>
-                    </div>
+                    </div> */}
                     <ul>
                     <li><a href="/db/create">เพิ่มข้อมูล</a></li>
                     <li><a href="/db/read">แสดงข้อมูล</a></li>

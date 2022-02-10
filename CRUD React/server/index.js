@@ -83,6 +83,29 @@ app.get('/api/db/paginate', (request, response) => {
     })
 })
 
+app.get('/api/db/search', (request, response) => {
+    let q = request.query.q || ''
+
+    //กรณีนี้ให้กำหนด pattern ด้วย RegExp แทนการใช้ / /
+    let pattern = new RegExp(q, 'ig')   
+
+    //จะค้นหาจากฟิลด์ name และ detail
+    let conditions = {$or: [        
+                        {name: {$regex: pattern}}, 
+                        {detail: {$regex: pattern}}
+                     ]}	
+
+    let options = {
+		page: request.query.page || 1,     //เพจปัจจุบัน
+		limit: 2     //แสดงผลหน้าละ 2 รายการ (ข้อมูลมีน้อย)               
+	}
+
+	Product
+	.paginate(conditions, options, (err, result) => {
+        response.json(result)
+    })
+})
+
 app.listen(port, () => {
     console.log('Server listening on port ' + port)
 })
